@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <hello-world
+      :text="'world'"
+    ></hello-world>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld'
+<script lang="ts">
+import Vue from 'vue'
+import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
+export default Vue.extend({
   name: 'app',
   components: {
     HelloWorld
+  },
+  props: {
+    size: {
+      type: Number,
+      required: false,
+      default: 10
+    }
+  },
+  computed: {
+    halfSize (): number {
+      return this.size / 2
+    }
   }
-}
+})
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
